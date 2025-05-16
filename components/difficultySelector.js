@@ -3,9 +3,12 @@ import { Text, TouchableOpacity, StyleSheet, View } from "react-native";
 import SmallSelectorButton from "./smallSelectorButton";
 import { useState } from "react";
 
-export default function DifficutySelector() {
+export default function DifficutySelector({
+  selectedDifficulty,
+  setSelectedDifficulty,
+}) {
   const [isSelected, setIsSelected] = React.useState(false);
-  const [selectedDifficulty, setSelectedDifficulty] = useState("easy");
+  //   const [selectedDifficulty, setSelectedDifficulty] = useState("easy");
   function handleEasyDifficultySelect() {
     // setIsSelected((prev) => !prev);
     setSelectedDifficulty("easy");
@@ -36,7 +39,7 @@ export default function DifficutySelector() {
       <SmallSelectorButton
         text={"Hard"}
         onPress={handleHardDifficultySelect}
-        isSelected={isSelected}
+        isSelected={selectedDifficulty === "hard"}
       />
     </View>
   );

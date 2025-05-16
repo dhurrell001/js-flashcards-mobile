@@ -33,8 +33,8 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.3,
     shadowRadius: 4,
 
-    // Android shadow
-    elevation: 5,
+    // // Android shadow
+    // elevation: 5,
   },
   selectedButton: {
     borderColor: "blue",

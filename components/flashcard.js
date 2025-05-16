@@ -2,7 +2,15 @@ import React from "react";
 import { Text, View, TouchableOpacity, StyleSheet } from "react-native";
 import SmallSelectorButton from "./smallSelectorButton";
 import AntDesign from "@expo/vector-icons/AntDesign";
-function Flashcard({ question, answer, setCurrentCard }) {
+function Flashcard({
+  // question,
+  // answer,
+  setCurrentCard,
+  selectedCardDeck,
+  currentCard,
+}) {
+  const question = selectedCardDeck[currentCard].question;
+  const answer = selectedCardDeck[currentCard].answer;
   const [isCardReversed, setIsCardReversed] = React.useState(false);
   function handleNext() {
     setCurrentCard((prev) => prev + 1);

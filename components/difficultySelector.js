@@ -6,21 +6,30 @@ import { useState } from "react";
 export default function DifficutySelector({
   selectedDifficulty,
   setSelectedDifficulty,
+  isCardReversed,
+  setIsCardReversed,
+  setCurrentCardIndex,
 }) {
   const [isSelected, setIsSelected] = React.useState(false);
   //   const [selectedDifficulty, setSelectedDifficulty] = useState("easy");
   function handleEasyDifficultySelect() {
     // setIsSelected((prev) => !prev);
     setSelectedDifficulty("easy");
+    setIsCardReversed(false);
+    setCurrentCardIndex(0); // reset to first card on difficulty change
     console.log(selectedDifficulty);
   }
   function handleMediumDifficultySelect() {
     // setIsSelected((prev) => !prev);
     setSelectedDifficulty("medium");
+    setIsCardReversed(false);
+    setCurrentCardIndex(0); // reset to first card on difficulty change
     console.log(selectedDifficulty);
   }
   function handleHardDifficultySelect() {
     setSelectedDifficulty("hard");
+    setIsCardReversed(false);
+    setCurrentCardIndex(0); // reset to first card on difficulty change
     console.log(selectedDifficulty);
   }
 

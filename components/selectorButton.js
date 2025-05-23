@@ -16,8 +16,8 @@ const styles = StyleSheet.create({
     backgroundColor: "gold",
 
     borderRadius: 50,
-    width: 75,
-    height: 75,
+    width: 65,
+    height: 65,
 
     justifyContent: "center",
     alignItems: "center",
@@ -31,6 +31,16 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   selectedButton: {
-    backgroundColor: "green",
+    borderColor: "blue",
+    borderWidth: 2,
+
+    // iOS shadow
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.3,
+    shadowRadius: 4,
+
+    // Android shadow
+    elevation: 5,
   },
 });

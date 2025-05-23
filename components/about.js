@@ -28,10 +28,11 @@ export default function About() {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "gold",
+    // backgroundColor: "gold",
     padding: 20,
     alignItems: "center",
-    marginTop: 20,
+    marginTop: 10,
+    width: "95%",
   },
   title: {
     fontSize: 26,

@@ -3,7 +3,7 @@ import { Text, View, TouchableOpacity, StyleSheet } from "react-native";
 import { RadioButton } from "react-native-paper";
 import { useState, useEffect } from "react";
 
-export default function FlashcardTextLearnMode({
+export default function FlashcardTextQuizMode({
   selectedQuizQuestions,
   currentCardIndex,
   setQuizScore,

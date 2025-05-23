@@ -1,56 +1,100 @@
 import React from "react";
-import { Text, View, TouchableOpacity, StyleSheet } from "react-native";
+import {
+  Text,
+  View,
+  TouchableOpacity,
+  StyleSheet,
+  ScrollView,
+} from "react-native";
 import SmallSelectorButton from "./smallSelectorButton";
 import AntDesign from "@expo/vector-icons/AntDesign";
+import FlashcardTextLearnMode from "./flashcardTextLearnMode";
+import FlashcardTextQuizMode from "./flashcardTextQuizMode";
+import FlashcardNavButtons from "./flashcardNavButtons";
+
 function Flashcard({
   // question,
   // answer,
-  setCurrentCard,
+  setCurrentCardIndex,
   selectedCardDeck,
-  currentCard,
+  currentCardIndex,
+  AmountOfCards,
+  isCardReversed,
+  setIsCardReversed,
+  learnOrQuiz,
+  selectedQuizQuestions,
+  quizScore,
+  setQuizScore,
 }) {
-  const question = selectedCardDeck[currentCard].question;
-  const answer = selectedCardDeck[currentCard].answer;
-  const [isCardReversed, setIsCardReversed] = React.useState(false);
+  const question = selectedCardDeck[currentCardIndex].question;
+  const answer = selectedCardDeck[currentCardIndex].answer;
+  // const [isCardReversed, setIsCardReversed] = React.useState(false);
+  console.log(
+    "amount of cards ",
+    AmountOfCards,
+    " current card ",
+    currentCardIndex
+  );
   function handleNext() {
-    setCurrentCard((prev) => prev + 1);
-    setIsCardReversed(false);
-    console.log("Next card");
+    if (currentCardIndex < AmountOfCards - 1) {
+      setCurrentCardIndex((currentCardIndex) => currentCardIndex + 1);
+      setIsCardReversed(false);
+      console.log("Next card");
+      return;
+    }
   }
   function handlePrev() {
-    setCurrentCard((prev) => prev - 1);
+    if (currentCardIndex <= 0) {
+      return;
+    }
+    setCurrentCardIndex((currentCardIndex) => currentCardIndex - 1);
     setIsCardReversed(false);
     console.log("Prev card");
   }
-  function handleFlip() {
+  function handleFlipLearnMode() {
     setIsCardReversed((prev) => !prev);
     console.log("Flip card");
+  }
+  function handleFlipQuizMode() {
+    // setIsCardReversed((prev) => !prev);
+    console.log("display score");
   }
 
   return (
     <View style={styles.flashcard}>
       <View style={styles.flashcardFront}>
-        {!isCardReversed ? (
-          <Text style={styles.cardText}>{question}</Text>
+        {learnOrQuiz === "learn" ? (
+          <>
+            <FlashcardTextLearnMode
+              isCardReversed={isCardReversed}
+              question={question}
+              answer={answer}
+            />
+            <FlashcardNavButtons
+              labelArray={["Prev", "Flip", "Next"]}
+              handleNext={handleNext}
+              handlePrev={handlePrev}
+              handleFlip={handleFlipLearnMode}
+              isCardReversed={isCardReversed}
+            />
+          </>
         ) : (
-          <Text style={styles.cardText}>{answer}</Text>
+          <>
+            <FlashcardTextQuizMode
+              currentCardIndex={currentCardIndex}
+              selectedQuizQuestions={selectedQuizQuestions}
+              quizScore={quizScore}
+              setQuizScore={setQuizScore}
+            />
+            <FlashcardNavButtons
+              labelArray={["Prev", "Answer", "Next"]}
+              handleNext={handleNext}
+              handlePrev={handlePrev}
+              handleFlip={handleFlipQuizMode}
+              isCardReversed={isCardReversed}
+            />
+          </>
         )}
-        <View style={styles.buttonContainer}>
-          <SmallSelectorButton
-            text={"Prev"}
-            icon={<AntDesign name="banckward" size={20} color="black" />}
-            onPress={handlePrev}
-          />
-          <SmallSelectorButton
-            text={isCardReversed ? "hide" : "show"}
-            onPress={handleFlip}
-          />
-          <SmallSelectorButton
-            text={"Next"}
-            icon={<AntDesign name="forward" size={20} color="black" />}
-            onPress={handleNext}
-          />
-        </View>
       </View>
     </View>
   );
@@ -61,10 +105,12 @@ export default Flashcard;
 const styles = StyleSheet.create({
   flashcard: {
     width: "85%",
-    minHeight: 200,
+    minHeight: 400,
+
     margin: 20,
+
     backgroundColor: "#fff",
-    borderRadius: 5,
+    borderRadius: 10,
     // iOS shadow
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 4 },
@@ -77,14 +123,17 @@ const styles = StyleSheet.create({
 
   flashcardFront: {
     width: "100%",
-    minHeight: 200,
+    minHeight: 400,
+    // flex: 1,
     backgroundColor: "#fff",
-    justifyContent: "center",
+    justifyContent: "space-evenly",
     alignItems: "center",
     borderWidth: 2,
     borderColor: "gold",
     padding: 5,
+    paddingBottom: 20,
     fontSize: 25,
+    borderRadius: 10,
     // backgroundColor: "blue",
   },
   buttonContainer: {
@@ -97,5 +146,8 @@ const styles = StyleSheet.create({
     fontSize: 20,
     textAlign: "center",
     marginBottom: 20,
+  },
+  quizTextContainer: {
+    height: 600,
   },
 });

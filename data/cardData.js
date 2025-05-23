@@ -74,6 +74,33 @@ const jsQuiz = [
     answer:
       "A callback is a function passed into another function as an argument, which is then invoked inside the outer function. Callbacks are often used for asynchronous operations, such as fetching data, waiting for a timer, or responding to user input. Example: `setTimeout(() => { console.log('Hello after 1 second'); }, 1000);`. In this case, the arrow function is the callback executed after 1 second. Callbacks help manage execution order, especially in non-blocking JavaScript, and are foundational to concepts like Promises and async/await.",
   },
+
+  // Newly added questions
+  {
+    question: "What is the difference between == and === in JavaScript?",
+    answer:
+      "`==` is the loose equality operator and performs type coercion, meaning it tries to convert the values to the same type before comparing. `===` is the strict equality operator and compares both value and type. Example: `5 == '5'` is `true`, but `5 === '5'` is `false`. Prefer `===` for more predictable comparisons.",
+  },
+  {
+    question: "What is a function parameter?",
+    answer:
+      "A function parameter is a variable listed in a function's definition. It acts as a placeholder for a value that will be passed to the function when it's called. Example: `function greet(name) { console.log('Hello ' + name); }`. In this example, `name` is the parameter.",
+  },
+  {
+    question: "What is a return statement in JavaScript?",
+    answer:
+      "The `return` statement is used to send a value back from a function to where it was called. Once `return` is executed, the function stops running. Example: `function add(a, b) { return a + b; }` will return the sum of `a` and `b`.",
+  },
+  {
+    question: "What is a string in JavaScript?",
+    answer:
+      "A string is a sequence of characters used to represent text. Strings are enclosed in single quotes, double quotes, or backticks. Example: `'hello'`, `\"world\"`, or `` `template` ``. JavaScript has many string methods like `.length`, `.toUpperCase()`, `.slice()`, and `.includes()`.",
+  },
+  {
+    question: "How do you concatenate strings in JavaScript?",
+    answer:
+      "You can concatenate (combine) strings using the `+` operator or template literals. Example: `'Hello' + ' ' + 'World'` results in `'Hello World'`. With template literals: `` `Hello ${name}` `` allows embedding variables inside strings easily.",
+  },
 ];
 
 export default jsQuiz;

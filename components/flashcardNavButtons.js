@@ -25,7 +25,7 @@ export default function FlashcardNavButtons({
     </View>
   );
 }
-styles = StyleSheet.create({
+const styles = StyleSheet.create({
   buttonContainer: {
     flexDirection: "row",
     justifyContent: "space-evenly",

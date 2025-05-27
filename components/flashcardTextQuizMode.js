@@ -28,7 +28,8 @@ export default function FlashcardTextQuizMode({
     setSelectedValue(null); // reset radio buttons
   }, [currentCardIndex]);
   return (
-    <View>
+    <View style={styles.contentContainer}>
+      <Text style={styles.questionNumber}>Question {currentCardIndex + 1}</Text>
       <View>
         <Text style={styles.cardText}>
           {selectedQuizQuestions[currentCardIndex].question}
@@ -57,40 +58,6 @@ export default function FlashcardTextQuizMode({
 }
 
 const styles = StyleSheet.create({
-  flashcard: {
-    width: "85%",
-    minHeight: 200,
-    margin: 20,
-    backgroundColor: "#fff",
-    borderRadius: 5,
-    // iOS shadow
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.3,
-    shadowRadius: 4,
-
-    // Android shadow
-    elevation: 5,
-  },
-
-  flashcardFront: {
-    width: "100%",
-    minHeight: 200,
-    backgroundColor: "#fff",
-    justifyContent: "center",
-    alignItems: "center",
-    borderWidth: 2,
-    borderColor: "gold",
-    padding: 5,
-    fontSize: 25,
-    // backgroundColor: "blue",
-  },
-  buttonContainer: {
-    flexDirection: "row",
-    justifyContent: "space-evenly",
-    width: "100%",
-    marginTop: 20,
-  },
   cardText: {
     fontSize: 17,
     textAlign: "center",
@@ -105,6 +72,11 @@ const styles = StyleSheet.create({
     // alignItems: "center",
     // justifyContent: "center",
   },
+  contentContainer: {
+    // backgroundColor: "blue",
+
+    height: 350,
+  },
   radioItem: {
     flexWrap: "wrap", // allows items to not overflow
     justifyContent: "space-evenly",
@@ -114,5 +86,11 @@ const styles = StyleSheet.create({
     flexShrink: 1, // allows label to shrink if needed
     flexWrap: "wrap",
     // padding: 5,
+  },
+  questionNumber: {
+    fontSize: 16,
+    // fontWeight: "bold",
+    textAlign: "center",
+    marginBottom: 5,
   },
 });

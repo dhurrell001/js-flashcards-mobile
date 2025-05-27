@@ -93,6 +93,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#FFFEF2",
+    // backgroundColor: "yellow",
     alignItems: "center",
     justifyContent: "top",
     width: "95%",
@@ -117,7 +118,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 30,
     marginBottom: 20,
-    paddingTop: 50,
+    paddingTop: 30,
     fontWeight: "bold",
   },
   gradientBackground: {

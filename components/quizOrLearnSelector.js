@@ -8,6 +8,7 @@ export default function QuizOrLearnSelector({
   learnOrQuiz,
   setLearnOrQuiz,
 }) {
+  const [isSelected, setIsSelected] = React.useState(false);
   function handleLearnSelect() {
     setLearnOrQuiz("learn");
     console.log(learnOrQuiz);
@@ -18,8 +19,16 @@ export default function QuizOrLearnSelector({
   }
   return (
     <View style={styles.buttonContainer}>
-      <SelectorButton text={"Learn"} onPress={handleLearnSelect} />
-      <SelectorButton text={"Quiz"} onPress={handleQuizSelect} />
+      <SelectorButton
+        text={"Learn"}
+        onPress={handleLearnSelect}
+        isSelected={learnOrQuiz === "learn"}
+      />
+      <SelectorButton
+        text={"Quiz"}
+        onPress={handleQuizSelect}
+        isSelected={learnOrQuiz === "quiz"}
+      />
     </View>
   );
 }

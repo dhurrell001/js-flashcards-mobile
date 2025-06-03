@@ -8,8 +8,11 @@ with the goal of creating a fun and interactive way to practice JavaScript funda
 📝 Features 
 
 •	📚 30 flashcards covering key JavaScript topics
+
 •	🧠 3 quizzes with increasing difficulty
+
 •	🎯 3 levels of flashcard and quiz complexity
+
 •	🏁 Score summary displayed at the end of each quiz
 
 🛠️ Tech Stack
@@ -28,8 +31,11 @@ with the goal of creating a fun and interactive way to practice JavaScript funda
    
 
 🧠 What I Learned
+
 •	Managing component state using React Hooks
+
 •	Organizing and scaling component-based architecture
+
 •	Handling user interaction and quiz scoring logic
 
 🔧 Future Improvements

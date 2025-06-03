@@ -5,7 +5,7 @@ The app includes flashcards and quizzes across three levels of difficulty, makin
 I built this project as part of my self-taught React Native training,
 with the goal of creating a fun and interactive way to practice JavaScript fundamentals.
 
-📝 Features
+📝 Features 
 •	📚 30 flashcards covering key JavaScript topics
 •	🧠 3 quizzes with increasing difficulty
 •	🎯 3 levels of flashcard and quiz complexity

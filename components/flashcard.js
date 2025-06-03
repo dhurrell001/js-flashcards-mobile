@@ -7,6 +7,7 @@ import FlashcardTextLearnMode from "./flashcardTextLearnMode";
 import FlashcardTextQuizMode from "./flashcardTextQuizMode";
 import FlashcardNavButtons from "./flashcardNavButtons";
 import FlashcardQuizNavButtons from "./flashcardQuizNavButtons";
+import QuizResults from "./quizResults";
 import { Button } from "react-native-paper"; // Unused, can remove
 
 // Main flashcard component used in both "learn" and "quiz" modes
@@ -120,10 +121,13 @@ function Flashcard({
         ) : (
           <>
             {/* QUIZ RESULTS SCREEN */}
-            <Text>score {quizScore}</Text>
 
+            <QuizResults
+              quizScore={quizScore}
+              currentCardIndex={currentCardIndex}
+            />
             {/* Reset quiz button */}
-            <TouchableOpacity
+            {/* <TouchableOpacity
               onPress={resetQuiz}
               style={{
                 backgroundColor: "blue",
@@ -133,7 +137,8 @@ function Flashcard({
               }}
             >
               <Text style={{ color: "white", textAlign: "center" }}>Reset</Text>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
+            <SmallSelectorButton text={"Reset"} onPress={resetQuiz} />
           </>
         )}
       </View>

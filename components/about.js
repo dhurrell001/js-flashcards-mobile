@@ -21,7 +21,7 @@ export default function About() {
         Built with React Native and Expo, this app is lightweight, responsive,
         and designed for mobile learning.
       </Text>
-      <Text style={styles.footer}>Made with ❤️ by David Hurrell</Text>
+      <Text style={styles.footer}>Made by David Hurrell 2025</Text>
     </ScrollView>
   );
 }

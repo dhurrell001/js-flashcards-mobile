@@ -7,6 +7,7 @@ export default function QuizOrLearnSelector({
   onPress,
   learnOrQuiz,
   setLearnOrQuiz,
+  setCurrentCardIndex,
 }) {
   const [isSelected, setIsSelected] = React.useState(false);
   function handleLearnSelect() {
@@ -15,6 +16,7 @@ export default function QuizOrLearnSelector({
   }
   function handleQuizSelect() {
     setLearnOrQuiz("quiz");
+    setCurrentCardIndex(0); // Reset to first card when switching to quiz
     console.log(learnOrQuiz);
   }
   return (

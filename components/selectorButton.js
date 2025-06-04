@@ -4,7 +4,7 @@ import { Text, TouchableOpacity, StyleSheet, View } from "react-native";
 export default function SelectorButton({ text, size, onPress, isSelected }) {
   return (
     <TouchableOpacity onPress={onPress}>
-      <View style={styles.button}>
+      <View style={[styles.button, isSelected && styles.selectedButton]}>
         <Text>{text}</Text>
       </View>
     </TouchableOpacity>
@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
 
     // Android shadow
-    elevation: 5,
+    // elevation: 5,
   },
   selectedButton: {
     borderColor: "blue",

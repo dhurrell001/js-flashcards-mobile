@@ -12,6 +12,7 @@ import DifficutySelector from "./components/difficultySelector";
 import QuizOrLearnSelector from "./components/quizOrLearnSelector";
 import MultipleChoiceQuestions from "./data/multipleChoiceQuestions";
 import { LinearGradient } from "expo-linear-gradient";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 export default function App() {
   const [selectedCardDeck, setSelectedCardDeck] = useState(jsQuiz);
@@ -45,9 +46,15 @@ export default function App() {
       style={styles.gradientBackground}
     >
       <ScrollView contentContainerStyle={styles.scrollBox}>
+        <StatusBar style="auto" />
         <View style={styles.container}>
-          <StatusBar style="auto" />
-          <Text style={styles.title}>JS Flashcards</Text>
+          <View style={[styles.title, { color: "yellow" }]}>
+            <MaterialCommunityIcons name="code-tags" size={45} color="black" />
+
+            <Text style={{ fontSize: 25, fontWeight: "bold" }}>
+              JS Flashcards
+            </Text>
+          </View>
 
           {/* <View style={styles.buttonContainer}>
           <SelectorButton text={"Learn"} />
@@ -56,6 +63,7 @@ export default function App() {
           <QuizOrLearnSelector
             learnOrQuiz={learnOrQuiz}
             setLearnOrQuiz={setLearnOrQuiz}
+            setCurrentCardIndex={setCurrentCardIndex}
           />
 
           <DifficutySelector
@@ -93,6 +101,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#FFFEF2",
+    // backgroundColor: "yellow",
     alignItems: "center",
     justifyContent: "top",
     width: "95%",
@@ -116,9 +125,13 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 30,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
     marginBottom: 20,
-    paddingTop: 50,
     fontWeight: "bold",
+    color: "yellow",
+    marginTop: 20,
   },
   gradientBackground: {
     flex: 1,

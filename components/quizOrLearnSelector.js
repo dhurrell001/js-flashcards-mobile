@@ -7,19 +7,30 @@ export default function QuizOrLearnSelector({
   onPress,
   learnOrQuiz,
   setLearnOrQuiz,
+  setCurrentCardIndex,
 }) {
+  const [isSelected, setIsSelected] = React.useState(false);
   function handleLearnSelect() {
     setLearnOrQuiz("learn");
     console.log(learnOrQuiz);
   }
   function handleQuizSelect() {
     setLearnOrQuiz("quiz");
+    setCurrentCardIndex(0); // Reset to first card when switching to quiz
     console.log(learnOrQuiz);
   }
   return (
     <View style={styles.buttonContainer}>
-      <SelectorButton text={"Learn"} onPress={handleLearnSelect} />
-      <SelectorButton text={"Quiz"} onPress={handleQuizSelect} />
+      <SelectorButton
+        text={"Learn"}
+        onPress={handleLearnSelect}
+        isSelected={learnOrQuiz === "learn"}
+      />
+      <SelectorButton
+        text={"Quiz"}
+        onPress={handleQuizSelect}
+        isSelected={learnOrQuiz === "quiz"}
+      />
     </View>
   );
 }

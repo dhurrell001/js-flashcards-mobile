@@ -8,6 +8,8 @@ import FlashcardTextQuizMode from "./flashcardTextQuizMode";
 import FlashcardNavButtons from "./flashcardNavButtons";
 import FlashcardQuizNavButtons from "./flashcardQuizNavButtons";
 import QuizResults from "./quizResults";
+import * as Haptics from "expo-haptics";
+
 import { Button } from "react-native-paper"; // Unused, can remove
 
 // Main flashcard component used in both "learn" and "quiz" modes
@@ -40,6 +42,8 @@ function Flashcard({
 
   // Go to the next card
   function handleNext() {
+    Haptics.selectionAsync();
+
     if (currentCardIndex < AmountOfCards - 1) {
       setCurrentCardIndex((current) => current + 1);
       setIsCardReversed(false);
@@ -49,6 +53,8 @@ function Flashcard({
 
   // Go to the previous card
   function handlePrev() {
+    Haptics.selectionAsync();
+
     if (currentCardIndex <= 0) return;
     setCurrentCardIndex((current) => current - 1);
     setIsCardReversed(false);
@@ -57,18 +63,24 @@ function Flashcard({
 
   // Flip the card in learn mode
   function handleFlipLearnMode() {
+    Haptics.selectionAsync();
+
     setIsCardReversed((prev) => !prev);
     console.log("Flip card");
   }
 
   // Submit the quiz
   function handleFlipQuizMode() {
+    Haptics.selectionAsync();
+
     console.log("display score");
     setIsQuizubmitted(true);
   }
 
   // Reset the quiz state
   function resetQuiz() {
+    Haptics.selectionAsync();
+
     setIsQuizubmitted(false);
     setQuizScore(0);
     setCurrentCardIndex(0);

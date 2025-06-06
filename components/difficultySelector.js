@@ -2,6 +2,7 @@ import React from "react";
 import { Text, TouchableOpacity, StyleSheet, View } from "react-native";
 import SmallSelectorButton from "./smallSelectorButton";
 import { useState } from "react";
+import * as Haptics from "expo-haptics";
 
 export default function DifficutySelector({
   selectedDifficulty,
@@ -14,6 +15,8 @@ export default function DifficutySelector({
   //   const [selectedDifficulty, setSelectedDifficulty] = useState("easy");
   function handleEasyDifficultySelect() {
     // setIsSelected((prev) => !prev);
+    Haptics.selectionAsync();
+
     setSelectedDifficulty("easy");
     setIsCardReversed(false);
     setCurrentCardIndex(0); // reset to first card on difficulty change
@@ -21,12 +24,16 @@ export default function DifficutySelector({
   }
   function handleMediumDifficultySelect() {
     // setIsSelected((prev) => !prev);
+    Haptics.selectionAsync();
+
     setSelectedDifficulty("medium");
     setIsCardReversed(false);
     setCurrentCardIndex(0); // reset to first card on difficulty change
     console.log(selectedDifficulty);
   }
   function handleHardDifficultySelect() {
+    Haptics.selectionAsync();
+
     setSelectedDifficulty("hard");
     setIsCardReversed(false);
     setCurrentCardIndex(0); // reset to first card on difficulty change

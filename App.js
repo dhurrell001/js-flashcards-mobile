@@ -13,87 +13,67 @@ import QuizOrLearnSelector from "./components/quizOrLearnSelector";
 import MultipleChoiceQuestions from "./data/multipleChoiceQuestions";
 import { LinearGradient } from "expo-linear-gradient";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import HomePage from "./pages/homePage";
+import AboutPage from "./pages/AboutPage";
+import InstructionPage from "./pages/InstructionPage";
+import { NavigationContainer } from "@react-navigation/native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+
+const Tab = createBottomTabNavigator();
 
 export default function App() {
-  const [selectedCardDeck, setSelectedCardDeck] = useState(jsQuiz);
-  const [selectedQuizQuestions, setSelectedQuizQuestions] = useState(
-    MultipleChoiceQuestions
-  );
-  const [currentCardIndex, setCurrentCardIndex] = useState(0);
-  const [isCardReversed, setIsCardReversed] = React.useState(false);
-  const [learnOrQuiz, setLearnOrQuiz] = useState("learn");
-  // const question = selectedCardDeck[currentCard].question;
-  // const answer = selectedCardDeck[currentCard].answer;
-  const [selectedDifficulty, setSelectedDifficulty] = useState("easy");
-  const [quizScore, setQuizScore] = useState(1);
-  let AmountOfCards =
-    learnOrQuiz === "learn"
-      ? selectedCardDeck.length
-      : selectedQuizQuestions.length;
-  useEffect(() => {
-    if (selectedDifficulty === "easy") {
-      setSelectedCardDeck(jsQuiz);
-    } else if (selectedDifficulty === "medium") {
-      setSelectedCardDeck(jsIntermediate);
-    } else if (selectedDifficulty === "hard") {
-      setSelectedCardDeck(jsHard);
-    }
-    setCurrentCardIndex(0); // reset to first card on difficulty change
-  }, [selectedDifficulty]);
   return (
-    <LinearGradient
-      colors={["#FFD700", "#FFFACD"]} // dark yellow to light yellow
-      style={styles.gradientBackground}
-    >
-      <ScrollView contentContainerStyle={styles.scrollBox}>
-        <StatusBar style="auto" />
-        <View style={styles.container}>
-          <View style={[styles.title, { color: "yellow" }]}>
-            <MaterialCommunityIcons name="code-tags" size={45} color="black" />
-
-            <Text style={{ fontSize: 25, fontWeight: "bold" }}>
-              JS Flashcards
-            </Text>
-          </View>
-
-          {/* <View style={styles.buttonContainer}>
-          <SelectorButton text={"Learn"} />
-          <SelectorButton text={"Quiz"} />
-        </View> */}
-          <QuizOrLearnSelector
-            learnOrQuiz={learnOrQuiz}
-            setLearnOrQuiz={setLearnOrQuiz}
-            setCurrentCardIndex={setCurrentCardIndex}
-          />
-
-          <DifficutySelector
-            selectedDifficulty={selectedDifficulty}
-            setSelectedDifficulty={setSelectedDifficulty}
-            isCardReversed={isCardReversed}
-            setIsCardReversed={setIsCardReversed}
-            setCurrentCardIndex={setCurrentCardIndex}
-          />
-          <Flashcard
-            // question={question}
-            // answer={answer}
-            selectedCardDeck={selectedCardDeck}
-            currentCardIndex={currentCardIndex}
-            setCurrentCardIndex={setCurrentCardIndex}
-            AmountOfCards={AmountOfCards}
-            isCardReversed={isCardReversed}
-            setIsCardReversed={setIsCardReversed}
-            learnOrQuiz={learnOrQuiz}
-            selectedQuizQuestions={selectedQuizQuestions}
-            quizScore={quizScore}
-            setQuizScore={setQuizScore}
-            onFlip={() => {}}
-          />
-        </View>
-        <View>
-          <About />
-        </View>
-      </ScrollView>
-    </LinearGradient>
+    // <LinearGradient
+    //   colors={["#FFD700", "#FFFACD"]} // dark yellow to light yellow
+    //   style={styles.gradientBackground}
+    // >
+    <NavigationContainer>
+      <Tab.Navigator
+        screenOptions={{
+          headerShown: false,
+          tabBarActiveTintColor: "#000",
+          tabBarStyle: { backgroundColor: "#FFFACD" },
+          sceneContainerStyle: { backgroundColor: "transparent" },
+        }}
+      >
+        <Tab.Screen
+          name="Home"
+          component={HomePage}
+          options={{
+            tabBarIcon: ({ color, size }) => (
+              <MaterialCommunityIcons name="home" color={color} size={size} />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="Instructions"
+          component={InstructionPage}
+          options={{
+            tabBarIcon: ({ color, size }) => (
+              <MaterialCommunityIcons
+                name="book-open-page-variant"
+                color={color}
+                size={size}
+              />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="About"
+          component={AboutPage}
+          options={{
+            tabBarIcon: ({ color, size }) => (
+              <MaterialCommunityIcons
+                name="information"
+                color={color}
+                size={size}
+              />
+            ),
+          }}
+        />
+      </Tab.Navigator>
+    </NavigationContainer>
+    // </LinearGradient>
   );
 }
 
@@ -105,7 +85,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "top",
     width: "95%",
-    marginTop: 50,
+    marginTop: 60,
     borderRadius: 6,
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },

@@ -1,5 +1,11 @@
 import React from "react";
-import { Text, View, TouchableOpacity, StyleSheet } from "react-native";
+import {
+  Text,
+  View,
+  TouchableOpacity,
+  StyleSheet,
+  ScrollView,
+} from "react-native";
 import { RadioButton } from "react-native-paper";
 import { useState, useEffect } from "react";
 
@@ -35,24 +41,26 @@ export default function FlashcardTextQuizMode({
           {selectedQuizQuestions[currentCardIndex].question}
         </Text>
       </View>
-      <View style={styles.answerContainer}>
-        <RadioButton.Group
-          onValueChange={(newValue) => handleAnswerCheck(parseInt(newValue))}
-          value={selectedValue}
-        >
-          {currentQuestion.answers.map((answer, index) => (
-            <RadioButton.Item
-              key={index}
-              label={answer.text}
-              value={index.toString()}
-              mode="android"
-              position="trailing"
-              labelStyle={styles.radioLabel}
-              style={styles.radioItem}
-            />
-          ))}
-        </RadioButton.Group>
-      </View>
+      <ScrollView contentContainerStyle={styles.contentContainer}>
+        <View style={styles.answerContainer}>
+          <RadioButton.Group
+            onValueChange={(newValue) => handleAnswerCheck(parseInt(newValue))}
+            value={selectedValue}
+          >
+            {currentQuestion.answers.map((answer, index) => (
+              <RadioButton.Item
+                key={index}
+                label={answer.text}
+                value={index.toString()}
+                mode="android"
+                position="trailing"
+                labelStyle={styles.radioLabel}
+                style={styles.radioItem}
+              />
+            ))}
+          </RadioButton.Group>
+        </View>
+      </ScrollView>
     </View>
   );
 }
@@ -92,5 +100,9 @@ const styles = StyleSheet.create({
     // fontWeight: "bold",
     textAlign: "center",
     marginBottom: 5,
+  },
+  contentContainer: {
+    flexGrow: 1,
+    maxHeight: 500,
   },
 });

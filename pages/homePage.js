@@ -12,6 +12,7 @@ import multipleChoiceQuestionIntermediate from "../data/multipleChoiceQuestionIn
 import multipleChoiceQuestionsHard from "../data/multipleChoiceQuestionsHard";
 import { LinearGradient } from "expo-linear-gradient";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import QuizModeModel from "../components/quizModeModal";
 
 export default function HomePage() {
   const [selectedCardDeck, setSelectedCardDeck] = useState(jsQuiz);
@@ -23,6 +24,7 @@ export default function HomePage() {
   const [learnOrQuiz, setLearnOrQuiz] = useState("learn");
   const [selectedDifficulty, setSelectedDifficulty] = useState("easy");
   const [quizScore, setQuizScore] = useState(1);
+  const [quizModalVisible, setQuizModalVisible] = useState(true);
 
   let AmountOfCards =
     learnOrQuiz === "learn"
@@ -63,6 +65,7 @@ export default function HomePage() {
             learnOrQuiz={learnOrQuiz}
             setLearnOrQuiz={setLearnOrQuiz}
             setCurrentCardIndex={setCurrentCardIndex}
+            setQuizModalVisible={setQuizModalVisible}
           />
 
           <DifficutySelector
@@ -83,7 +86,10 @@ export default function HomePage() {
             selectedQuizQuestions={selectedQuizQuestions}
             quizScore={quizScore}
             setQuizScore={setQuizScore}
+            quizModalVisible={quizModalVisible}
+            setQuizModalVisible={setQuizModalVisible}
             onFlip={() => {}}
+            setLearnOrQuiz={setLearnOrQuiz}
           />
         </View>
       </ScrollView>

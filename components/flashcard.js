@@ -9,6 +9,7 @@ import FlashcardNavButtons from "./flashcardNavButtons";
 import FlashcardQuizNavButtons from "./flashcardQuizNavButtons";
 import QuizResults from "./quizResults";
 import * as Haptics from "expo-haptics";
+import QuizModeModel from "./quizModeModal";
 
 import { Button } from "react-native-paper"; // Unused, can remove
 
@@ -24,6 +25,9 @@ function Flashcard({
   selectedQuizQuestions,
   quizScore,
   setQuizScore,
+  quizModalVisible,
+  setQuizModalVisible,
+  setLearnOrQuiz,
 }) {
   // Get current question and answer
   const question = selectedCardDeck[currentCardIndex].question;
@@ -98,6 +102,7 @@ function Flashcard({
               isCardReversed={isCardReversed}
               question={question}
               answer={answer}
+              currentCardIndex={currentCardIndex}
             />
 
             {/* Learn mode buttons: Prev, Flip, Next */}
@@ -107,19 +112,23 @@ function Flashcard({
               handlePrev={handlePrev}
               handleFlip={handleFlipLearnMode}
               isCardReversed={isCardReversed}
+              AmountOfCards={AmountOfCards}
+              currentCardIndex={currentCardIndex}
+              setCurrentCardIndex={setCurrentCardIndex}
+              setIsCardReversed={setIsCardReversed}
             />
           </>
         ) : !isQuizsumbitted ? (
           <>
             {/* QUIZ MODE */}
-            <FlashcardTextQuizMode
+            {/* <FlashcardTextQuizMode
               currentCardIndex={currentCardIndex}
               selectedQuizQuestions={selectedQuizQuestions}
               quizScore={quizScore}
               setQuizScore={setQuizScore}
             />
 
-            {/* Quiz mode buttons: Prev, Submit, Next */}
+            {/* Quiz mode buttons: Prev, Submit, Next 
             <FlashcardQuizNavButtons
               labelArray={["Prev", "Submit", "Next"]}
               handleNext={handleNext}
@@ -128,6 +137,19 @@ function Flashcard({
               isCardReversed={isCardReversed}
               selectedQuizQuestions={selectedQuizQuestions}
               currentCardIndex={currentCardIndex}
+            /> */}
+            <QuizModeModel
+              selectedQuizQuestions={selectedQuizQuestions}
+              currentCardIndex={currentCardIndex}
+              setQuizScore={setQuizScore}
+              quizScore={quizScore}
+              quizModalVisible={quizModalVisible}
+              setQuizModalVisible={setQuizModalVisible}
+              AmountOfCards={AmountOfCards}
+              setCurrentCardIndex={setCurrentCardIndex}
+              setIsQuizubmitted={setIsQuizubmitted}
+              isQuizsumbitted={isQuizsumbitted}
+              setLearnOrQuiz={setLearnOrQuiz}
             />
           </>
         ) : (
@@ -139,17 +161,7 @@ function Flashcard({
               currentCardIndex={currentCardIndex}
             />
             {/* Reset quiz button */}
-            {/* <TouchableOpacity
-              onPress={resetQuiz}
-              style={{
-                backgroundColor: "blue",
-                padding: 10,
-                borderRadius: 5,
-                marginTop: 20,
-              }}
-            >
-              <Text style={{ color: "white", textAlign: "center" }}>Reset</Text>
-            </TouchableOpacity> */}
+
             <SmallSelectorButton text={"Reset"} onPress={resetQuiz} />
           </>
         )}

@@ -1,14 +1,13 @@
 import React from "react";
 import { Text, View, TouchableOpacity, StyleSheet } from "react-native";
-import SmallSelectorButton from "./smallSelectorButton";
 import SelectorButton from "./selectorButton";
 import * as Haptics from "expo-haptics";
 
 export default function QuizOrLearnSelector({
-  onPress,
   learnOrQuiz,
   setLearnOrQuiz,
   setCurrentCardIndex,
+  setQuizModalVisible,
 }) {
   const [isSelected, setIsSelected] = React.useState(false);
   function handleLearnSelect() {
@@ -21,6 +20,7 @@ export default function QuizOrLearnSelector({
     setLearnOrQuiz("quiz");
     setCurrentCardIndex(0); // Reset to first card when switching to quiz
     console.log(learnOrQuiz);
+    setQuizModalVisible(true); // Open quiz modal when switching to quiz
   }
   return (
     <View style={styles.buttonContainer}>

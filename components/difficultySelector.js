@@ -15,7 +15,7 @@ export default function DifficutySelector({
   //   const [selectedDifficulty, setSelectedDifficulty] = useState("easy");
   function handleEasyDifficultySelect() {
     // setIsSelected((prev) => !prev);
-    Haptics.selectionAsync();
+    // Haptics.selectionAsync();
 
     setSelectedDifficulty("easy");
     setIsCardReversed(false);
@@ -24,7 +24,7 @@ export default function DifficutySelector({
   }
   function handleMediumDifficultySelect() {
     // setIsSelected((prev) => !prev);
-    Haptics.selectionAsync();
+    // Haptics.selectionAsync();
 
     setSelectedDifficulty("medium");
     setIsCardReversed(false);

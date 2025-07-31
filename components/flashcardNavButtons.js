@@ -8,7 +8,18 @@ export default function FlashcardNavButtons({
   handlePrev,
   handleFlip,
   isCardReversed,
+  setCurrentCardIndex,
+  setIsCardReversed,
+  currentCardIndex,
+  selectedQuizQuestions,
+  AmountOfCards,
 }) {
+  function handleReset() {
+    setCurrentCardIndex(0);
+    setIsCardReversed(false);
+  }
+  const isLastCard = currentCardIndex === AmountOfCards - 1;
+
   return (
     <View style={styles.buttonContainer}>
       <SmallSelectorButton
@@ -17,11 +28,19 @@ export default function FlashcardNavButtons({
         onPress={handlePrev}
       />
       <SmallSelectorButton text={labelArray[1]} onPress={handleFlip} />
-      <SmallSelectorButton
-        text={labelArray[2]}
-        icon={<AntDesign name="forward" size={20} color="black" />}
-        onPress={handleNext}
-      />
+      {!isLastCard ? (
+        <>
+          <SmallSelectorButton
+            text={labelArray[2]}
+            icon={<AntDesign name="forward" size={20} color="black" />}
+            onPress={handleNext}
+          />
+        </>
+      ) : (
+        <>
+          <SmallSelectorButton text="Reset" onPress={handleReset} />
+        </>
+      )}
     </View>
   );
 }

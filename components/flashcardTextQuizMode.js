@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   StyleSheet,
   ScrollView,
+  Modal,
 } from "react-native";
 import { RadioButton } from "react-native-paper";
 import { useState, useEffect } from "react";
@@ -14,6 +15,8 @@ export default function FlashcardTextQuizMode({
   currentCardIndex,
   setQuizScore,
   quizScore,
+  quizModalVisible,
+  setQuizModalVisible,
 }) {
   const currentQuestion = selectedQuizQuestions[currentCardIndex];
   const [selectedValue, setSelectedValue] = useState(null);

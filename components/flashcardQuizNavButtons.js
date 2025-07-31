@@ -40,8 +40,10 @@ export default function FlashcardQuizNavButtons({
 const styles = StyleSheet.create({
   buttonContainer: {
     flexDirection: "row",
-    justifyContent: "space-evenly",
-    width: "100%",
+    justifyContent: "space-between",
+    alignItems: "space-between",
+    width: "80%",
     marginTop: 20,
+    // paddingHorizontal: 30,
   },
 });

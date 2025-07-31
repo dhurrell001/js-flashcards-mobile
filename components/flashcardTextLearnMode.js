@@ -12,17 +12,25 @@ export default function FlashcardTextLearnMode({
   isCardReversed,
   question,
   answer,
+  currentCardIndex,
 }) {
   return (
-    <View style={styles.scrollContainer}>
-      <ScrollView>
-        {!isCardReversed ? (
-          <Text style={styles.cardText}>{question}</Text>
-        ) : (
-          <Text style={styles.cardText}>{answer}</Text>
-        )}
-      </ScrollView>
-    </View>
+    <>
+      <View>
+        <Text style={styles.cardNumberText}>
+          FlashCard {currentCardIndex + 1}
+        </Text>
+      </View>
+      <View style={styles.scrollContainer}>
+        <ScrollView>
+          {!isCardReversed ? (
+            <Text style={styles.cardText}>{question}</Text>
+          ) : (
+            <Text style={styles.cardText}>{answer}</Text>
+          )}
+        </ScrollView>
+      </View>
+    </>
   );
 }
 const styles = StyleSheet.create({
@@ -34,5 +42,11 @@ const styles = StyleSheet.create({
   scrollContainer: {
     width: "100%",
     height: 200,
+  },
+  cardNumberText: {
+    fontSize: 19,
+    textAlign: "center",
+    marginBottom: 20,
+    fontWeight: "bold",
   },
 });
